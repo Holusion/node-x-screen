@@ -1,6 +1,6 @@
 {
   "name": "x-screen",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "private": false,
   "scripts": {
     "start": "node app.js",
@@ -11,8 +11,7 @@
     "linux"
   ],
   "repository": "https://github.com/Holusion/node-x-screen.git",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "mocha": "*",
     "chai": "*",
