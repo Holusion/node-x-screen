@@ -1,0 +1,21 @@
+{
+  "name": "x-screen",
+  "version": "0.0.1",
+  "private": false,
+  "scripts": {
+    "start": "node app.js",
+    "test": "./node_modules/.bin/mocha"
+  },
+  "main": "index.js",
+  "os": [
+    "linux"
+  ],
+  "repository": "https://github.com/Holusion/node-x-screen.git",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "chai": "*",
+    "chai-things": "*"
+  }
+}
