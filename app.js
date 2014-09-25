@@ -3,7 +3,7 @@
 var screen = require("./index.js");
 
 var start = process.hrtime();
-console.log(screen.size());
+console.log(screen.getSize());
 var diff = process.hrtime(start);
 console.log("elapsed time : ");
 console.log("- %s seconds",diff[0]+diff[1]*1e-9);
