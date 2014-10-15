@@ -65,7 +65,7 @@ INCS_Release := \
 	-I/home/sebastien/.node-gyp/0.10.26/deps/v8/include
 
 OBJS := \
-	$(obj).target/$(TARGET)/src/main.o
+	$(obj).target/$(TARGET)/src/nox.o
 
 # Add to the list of files we specially track dependencies for.
 all_deps += $(OBJS)
@@ -101,8 +101,7 @@ LDFLAGS_Release := \
 	-rdynamic \
 	-m64
 
-LIBS := \
-	-lX11
+LIBS :=
 
 $(obj).target/xscreen.node: GYP_LDFLAGS := $(LDFLAGS_$(BUILDTYPE))
 $(obj).target/xscreen.node: LIBS := $(LIBS)

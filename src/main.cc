@@ -6,7 +6,6 @@
 using namespace v8;
 
 
-
 //Send the size of display :0
 Handle<Value> getSize(const Arguments& args) {
   HandleScope scope;
