@@ -1,4 +1,3 @@
-#define BUILDING_NODE_EXTENSION
 #include <node.h>
 #include <v8.h>
 #include <stdio.h>
@@ -7,21 +6,22 @@ using namespace v8;
 
 
 //Send the size of display :0
-Handle<Value> getSize(const Arguments& args) {
-  HandleScope scope;
+void getSize(const FunctionCallbackInfo<Value>& args) {
+  Isolate* isolate = Isolate::GetCurrent();
+  HandleScope scope(isolate);
   Display *dpy;
   //Determine target display
 
   dpy = XOpenDisplay(":0");
   //Check display opening
   if(!dpy){
-    return scope.Close(Undefined());
+    args.GetReturnValue().Set(Undefined());
   }else{
-    Local<Object> size = Object::New();
-    size->Set(String::NewSymbol("width"),Integer::New(DisplayWidth(dpy,0)));
-    size->Set(String::NewSymbol("height"),Integer::New(DisplayHeight(dpy,0)));
+    Local<Object> size = Object::New(isolate);
+    size->Set(String::NewFromUtf8(isolate,"width"),Number::New(isolate,DisplayWidth(dpy,0)));
+    size->Set(String::NewFromUtf8(isolate,"height"),Number::New(isolate,DisplayHeight(dpy,0)));
     XCloseDisplay(dpy);
-    return scope.Close(size);
+    args.GetReturnValue().Set(size);
   }
 
 
@@ -29,8 +29,7 @@ Handle<Value> getSize(const Arguments& args) {
 
 //Mandatory Init function
 void init(Handle<Object> exports) {
-  exports->Set(String::NewSymbol("getSize"),
-      FunctionTemplate::New(getSize)->GetFunction());
+  NODE_SET_METHOD(exports, "getSize",getSize);
 }
 
 NODE_MODULE(xscreen, init)
